@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Points on a map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #test{
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+      }
+      #button-container {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+      
+    </style>
+  </head>
+  <body>
+    <div id="map">
+        <div id="button-container">
+            <button id="animate-button">Lancer l'animation</button>
+        </div>
+        <div id="button-container">
+          <button id="pitch-button">3D</button>
+        </div>
+    </div>
+    <script>
+
+
+        const bounds = [
+            [14, 30], // Southwest coordinates
+            [42, 42] // Northeast coordinates
+        ];
+
+
+
+        // The value for 'accessToken' begins with 'pk...'
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXBlcm96ZW5pNyIsImEiOiJjbTMyNHpoNWgxMG5kMmpzNzUzdjhnY3dyIn0.sRs6nQfyHOAQ519ZWLjHwg';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/aperozeni7/cm5ntn1zk00d201qubbveehkn',
+            center: [35.5, 25.5],
+            zoom: 7,
+            // pitch: 45,
+            maxBounds: bounds
+        });
+
+        
+        map.setMaxZoom(10.75);
+        map.setMinZoom(5.75);
+
+        // map.easeTo({
+        //     pitch: 30,
+        //     duration: 3000 // Durée de l'animation en millisecondes
+        // });
+
+
+            // TEST //
+        // map.on('zoom', () => {
+        //     const zoom = map.getZoom(); // Obtenez le niveau de zoom actuel
+        //     console.log("zoom", zoom)
+        //     console.log("pitch", map.getPitch())
+
+        //     // Définir la perspective en fonction du zoom
+        //     if (zoom > 7.5) {
+        //         map.easeTo({
+        //             pitch: Math.min((zoom - 7.5) * 40, 60),
+        //             duration: 300 // Durée de la transition en millisecondes
+        //         });
+        //         // map.flyTo({
+        //         //     // center: map.getCenter(),
+        //         //     zoom: zoom,
+        //         //     pitch: Math.min((zoom - 7.5) * 40, 60),
+        //         //     // bearing: (zoom - 5) * 5,
+        //         //     // speed: 0.5, // Réduction de la vitesse pour plus de fluidité
+        //         //     curve: 1.5, // Courbe plus douce
+        //         //     // easing: t => t * (2 - t)
+        //         // });
+        //         // map.setPitch(Math.min((zoom - 7.5) * 40, 60)); // Inclinaison progressive (max 60°)
+        //         // // map.setPitch(Math.min((zoom - 4) * 20, 70)); // Inclinaison progressive (max 60°)
+        //     }
+        // });
+
+
+
+
+
+        // map.on('zoom', () => {
+        //     const zoom = map.getZoom(); // Obtenez le niveau de zoom actuel
+        //     console.log("zoom", zoom)
+        //     console.log("pitch", map.getPitch())
+
+        //     // Définir la perspective en fonction du zoom
+        //     if (zoom > 7.5) {
+        //         map.setPitch(Math.min((zoom - 7.5) * 40, 60)); // Inclinaison progressive (max 60°)
+        //         // map.setBearing((zoom - 5) * 5); // Rotation progressive de la caméra
+        //         // map.setPitch(Math.min((zoom - 4) * 20, 70)); // Inclinaison progressive (max 60°)
+        //     }
+        // });
+
+
+            // A CONSERVER
+        // map.on('zoom', () => {
+        //     const zoom = map.getZoom(); // Obtenez le niveau de zoom actuel
+        //     console.log("zoom", zoom)
+        //     console.log("pitch", map.getPitch())
+
+        //     // Définir la perspective en fonction du zoom
+        //     if (zoom > 7.5) {
+        //         map.setPitch(Math.min((zoom - 7.5) * 40, 60)); // Inclinaison progressive (max 60°)
+        //         // map.setBearing((zoom - 5) * 5); // Rotation progressive de la caméra
+        //         // map.setPitch(Math.min((zoom - 4) * 20, 70)); // Inclinaison progressive (max 60°)
+        //     }
+        // });
+
+
+
+
+        // SAVE
+
+        // map.on('zoom', () => {
+        //     const zoom = map.getZoom(); // Obtenez le niveau de zoom actuel
+        //     console.log("zoom", zoom)
+
+        //     // Définir la perspective en fonction du zoom
+        //     if (zoom > 5) {
+        //         map.setPitch(Math.min((zoom - 5) * 15, 60)); // Inclinaison progressive (max 60°)
+        //         map.setBearing((zoom - 5) * 5); // Rotation progressive de la caméra
+        //     } else {
+        //         map.setPitch(0); // Réinitialiser si zoom faible
+        //         map.setBearing(0);
+        //     }
+        // });
+
+
+
+        // document
+        // .getElementById('animate-button')
+        // .addEventListener('click', function () {
+        //     const zoom = map.getZoom();
+        //     map.easeTo({
+        //         pitch: Math.min((zoom - 7.5) * 40, 60),
+        //         duration: 3000 // Durée de la transition en millisecondes
+        //     });
+        // });
+
+        // Sélectionner le bouton
+        const button = document.getElementById('animate-button');
+        
+        let toggle = false;
+        // Ajouter un gestionnaire d'événement au clic
+        button.addEventListener('click', () => {
+            // Déclencher l'animation avec flyTo
+            const zoom = map.getZoom();
+            if(!toggle){
+              map.easeTo({
+                  zoom: 9,
+                  pitch: 60,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button.textContent = "Revenir à la vue initiale";
+            }
+            else{
+              map.easeTo({
+                  zoom: 7,
+                  pitch: 0,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button.textContent = "Lancer l'animation";
+            }
+            toggle = !toggle
+        });
+
+
+
+        // const button2 = document.getElementById('pitch-button');
+        
+        // let toggle2 = false;
+        // // Ajouter un gestionnaire d'événement au clic
+        // button2.addEventListener('click', () => {
+        //     // Déclencher l'animation avec flyTo
+        //     const zoom = map.getZoom();
+        //     if(!toggle2){
+        //       map.easeTo({
+        //           pitch: 45,
+        //           duration: 2000 // Durée de la transition en millisecondes
+        //       });
+        //       button2.textContent = "2D";
+        //     }
+        //     else{
+        //       map.easeTo({
+        //           pitch: 0,
+        //           duration: 2000 // Durée de la transition en millisecondes
+        //       });
+        //       button2.textContent = "3D";
+        //     }
+        //     toggle2 = !toggle2
+        // });
+
+
+        document
+          .getElementById('pitch-button')
+          .addEventListener('click', function () {
+              // map.setConfigProperty('basemap', 'lightPreset', "dusk");
+              map.setPaintProperty('Land', 'background-color', '#faafee');
+          });
+
+        
+
+
+
+
+    </script>
+  </body>
+</html>

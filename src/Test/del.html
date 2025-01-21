@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Points on a map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+
+        const bounds = [
+            [14, 30], // Southwest coordinates
+            [42, 42] // Northeast coordinates
+        ];
+
+
+
+        // The value for 'accessToken' begins with 'pk...'
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXBlcm96ZW5pNyIsImEiOiJjbTMyNHpoNWgxMG5kMmpzNzUzdjhnY3dyIn0.sRs6nQfyHOAQ519ZWLjHwg';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            // style: 'mapbox://styles/aperozeni7/cm5ntn1zk00d201qubbveehkn',
+            style: 'mapbox://styles/aperozeni7/cm3c4lpp8014201qz4p3l2ukk',
+            center: [35.5, 25.5],
+            zoom: 7
+            // pitch: 45,
+        });
+
+        
+
+
+
+        map.easeTo({
+            pitch: 45,
+            duration: 3000 // Durée de l'animation en millisecondes
+        });
+
+
+
+        map.on('style.load', () => {
+            map.setFog({
+                color: 'rgba(30, 30, 60, 1)', // Couleur sombre pour un effet nuit
+                "high-color": 'rgba(50, 50, 80, 0.5)', // Couleur en altitude
+                "horizon-blend": 0.1, // Mélange avec l'horizon
+                range: [1, 8], // Portée du brouillard
+                "space-color": 'rgba(20, 20, 40, 1)', // Couleur du ciel
+                "star-intensity": 0.2 // Intensité des étoiles (si compatible)
+            });
+            
+        });
+
+
+        
+        let feature;
+
+        map.addInteraction("move-handler", {
+          // type: "click",
+          type: "mousemove",
+          target: {
+            "layerId": "bible-dataset"
+        },
+          handler: (e) => {
+            console.log("Test");
+            if (e.feature) {
+              console.log("Test2", feature);
+              if (feature) {
+                console.log("Test 3");
+                map.setFeatureState(feature, { ["state"]: false });
+              }
+
+              feature = e.feature;
+              console.log("Test 4", feature);
+              map.setFeatureState(feature, { ["state"]: true });
+              console.log("Test 5", feature);
+            }
+
+            // if (feature) {
+            //   console.log("Test feature", feature);
+            //   map.setFeatureState(feature, { ["state"]: false });
+            //   feature = null;
+            // }
+          }
+        });
+
+        map.addInteraction("leave-handler", {
+          type: "mouseleave",
+          target: {
+            "layerId": "bible-dataset"
+        },
+          handler: (e) => {
+            console.log("Leave", e.feature);
+            if (feature) {
+              map.setFeatureState(feature, { ["state"]: false });
+              feature = null;
+            }
+          }
+        });
+
+
+
+
+    </script>
+  </body>
+</html>

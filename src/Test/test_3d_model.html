@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Points on a map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.2/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.2/mapbox-gl.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #test{
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+      }
+      #button-container {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+      
+    </style>
+  </head>
+  <body>
+    <div id="map">
+        <div id="button-container">
+            <button id="animate-button">Lancer l'animation</button>
+        </div>
+        <div id="button-container">
+          <button id="pitch-button">3D</button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r135/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r135/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script type="module">
+        import * as THREE from '../node_modules/three';
+        import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+
+        const bounds = [
+            [14, 30], // Southwest coordinates
+            [42, 42] // Northeast coordinates
+        ];
+
+
+
+        // The value for 'accessToken' begins with 'pk...'
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXBlcm96ZW5pNyIsImEiOiJjbTMyNHpoNWgxMG5kMmpzNzUzdjhnY3dyIn0.sRs6nQfyHOAQ519ZWLjHwg';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/aperozeni7/cm5ntn1zk00d201qubbveehkn',
+            center: [35.5, 25.5],
+            zoom: 7,
+            // pitch: 45,
+            maxBounds: bounds
+        });
+
+        
+
+        // Sélectionner le bouton
+        const button = document.getElementById('animate-button');
+        
+        let toggle = false;
+        // Ajouter un gestionnaire d'événement au clic
+        button.addEventListener('click', () => {
+            // Déclencher l'animation avec flyTo
+            const zoom = map.getZoom();
+            if(!toggle){
+              map.easeTo({
+                  zoom: 9,
+                  pitch: 60,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button.textContent = "Revenir à la vue initiale";
+            }
+            else{
+              map.easeTo({
+                  zoom: 7,
+                  pitch: 0,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button.textContent = "Lancer l'animation";
+            }
+            toggle = !toggle
+        });
+
+
+
+        const button2 = document.getElementById('pitch-button');
+        
+        let toggle2 = false;
+        // Ajouter un gestionnaire d'événement au clic
+        button2.addEventListener('click', () => {
+            // Déclencher l'animation avec flyTo
+            const zoom = map.getZoom();
+            if(!toggle2){
+              map.easeTo({
+                  pitch: 45,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button2.textContent = "2D";
+            }
+            else{
+              map.easeTo({
+                  pitch: 0,
+                  duration: 2000 // Durée de la transition en millisecondes
+              });
+              button2.textContent = "3D";
+            }
+            toggle2 = !toggle2
+        });
+
+
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.Camera();
+        const renderer = new THREE.WebGLRenderer({ canvas: map.getCanvas(), context: map.painter.context });
+        renderer.autoClear = false;
+
+        map.on('render', () => {
+            renderer.render(scene, camera);
+        });
+
+
+        const loader = new THREE.GLTFLoader();
+
+        loader.load('cloud.gltf.zip', (gltf) => {
+            const model = gltf.scene;
+            model.scale.set(10, 10, 10); // Ajustez l'échelle
+            model.rotation.x = Math.PI / 2; // Ajustez l'orientation
+            model.position.set(0, 0, 0); // Ajustez la position (coordonnées locales)
+
+            scene.add(model);
+        });
+
+
+        map.on('style.load', () => {
+            const mercator = mapboxgl.MercatorCoordinate.fromLngLat([longitude, latitude], altitude);
+            const scale = mercator.meterInMercatorCoordinateUnits();
+
+            model.position.set(mercator.x, mercator.y, mercator.z);
+            model.scale.set(scale, scale, scale);
+        });
+
+
+
+
+        
+
+
+
+
+    </script>
+  </body>
+</html>

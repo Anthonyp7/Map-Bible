@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte avec Brouillard Animé</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXBlcm96ZW5pNyIsImEiOiJjbTMyNHpoNWgxMG5kMmpzNzUzdjhnY3dyIn0.sRs6nQfyHOAQ519ZWLjHwg';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/aperozeni7/cm5ntn1zk00d201qubbveehkn',
+            center: [35.5, 25.5],
+            zoom: 7
+            // pitch: 45,
+        });
+
+
+
+        map.on('style.load', () => {
+            // Intégration Three.js
+            const canvas = map.getCanvas();
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+            renderer.setSize(map.getCanvas().width, map.getCanvas().height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(
+                45,
+                map.getCanvas().width / map.getCanvas().height,
+                0.1,
+                1000
+            );
+
+            // Mise à jour de la caméra en fonction de Mapbox
+            map.on('render', () => {
+                const { lng, lat } = map.getCenter();
+                camera.position.set(lng, lat, 10); // Ajustez la position
+                camera.lookAt(lng, lat, 0);
+                renderer.render(scene, camera);
+            });
+        });
+
+
+
+        const loader = new THREE.TextureLoader();
+        loader.load('fog.jpg', (texture) => {
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(4, 4); // Répéter la texture
+
+            const geometry = new THREE.PlaneGeometry(500, 500); // Taille du plan
+            const material = new THREE.MeshBasicMaterial({
+                map: texture,
+                transparent: true,
+                opacity: 0.5 // Ajustez l'opacité
+            });
+
+            const fogPlane = new THREE.Mesh(geometry, material);
+            fogPlane.position.set(0, 0, -10); // Position sous la carte
+            scene.add(fogPlane);
+
+            // Animer la texture
+            function animateFog() {
+                texture.offset.x -= 0.001; // Déplacement horizontal
+                texture.offset.y -= 0.001; // Déplacement vertical
+                renderer.render(scene, camera);
+                requestAnimationFrame(animateFog);
+            }
+
+            animateFog();
+        });
+
+
+    </script>
+</body>
+</html>
