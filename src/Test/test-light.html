@@ -183,6 +183,7 @@
         document
           .addEventListener('click', function () {
             if (!night){
+              console.log("test")
                 map.setPaintProperty('Land', 'background-color', '#0b0909');
 
                 button.textContent = "Day";
@@ -200,41 +201,41 @@
 
 
 
-          function interpolateColor(color1, color2, factor) {
-            const result = color1.map((c, i) => Math.round(c + factor * (color2[i] - c)));
-            return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
-          }
+          // function interpolateColor(color1, color2, factor) {
+          //   const result = color1.map((c, i) => Math.round(c + factor * (color2[i] - c)));
+          //   return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+          // }
             
             
-          const startColor = '#f7ddb1'; 
-          const endColor = [0, 0, 255]; // Bleu
+          // const startColor = '#f7ddb1'; 
+          // const endColor = [0, 0, 255]; // Bleu
 
-          // Temps total de transition en secondes
-          const totalTime = 24; // 24 minutes = 1440 secondes
-          let elapsedTime = 0;
+          // // Temps total de transition en secondes
+          // const totalTime = 24; // 24 minutes = 1440 secondes
+          // let elapsedTime = 0;
 
 
-          // Mise à jour de la couleur toutes les secondes
-          const interval = setInterval(() => {
-            elapsedTime++;
-            if (elapsedTime > totalTime) {
-              elapsedTime = 0; // Réinitialise après 24 minutes
-            }
+          // // Mise à jour de la couleur toutes les secondes
+          // const interval = setInterval(() => {
+          //   elapsedTime++;
+          //   if (elapsedTime > totalTime) {
+          //     elapsedTime = 0; // Réinitialise après 24 minutes
+          //   }
 
-            // Facteur d'interpolation (entre 0 et 1)
-            const factor = elapsedTime / totalTime;
+          //   // Facteur d'interpolation (entre 0 et 1)
+          //   const factor = elapsedTime / totalTime;
 
-            // Couleur interpolée
-            // const interpolatedColor = interpolateColor(startColor, endColor, factor);
+          //   // Couleur interpolée
+          //   // const interpolatedColor = interpolateColor(startColor, endColor, factor);
 
-            // Appliquer la couleur au layer
-            map.setPaintProperty('Land', 'background-color',[
-              "interpolate",
-              ["linear"],
-              "#f7ddb1",
-              "#f6eacb"
-            ]);
-          }, 1000); // Mise à jour chaque seconde
+          //   // Appliquer la couleur au layer
+          //   map.setPaintProperty('Land', 'background-color',[
+          //     "interpolate",
+          //     ["linear"],
+          //     "#f7ddb1",
+          //     "#f6eacb"
+          //   ]);
+          // }, 1000); // Mise à jour chaque seconde
 
 
 

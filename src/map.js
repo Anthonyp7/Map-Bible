@@ -14,6 +14,8 @@ const map = new mapboxgl.Map({
     maxBounds: bounds
 });
 
+let pitch_init = 45
+
 
 
 map.setMaxZoom(10.75);
@@ -23,7 +25,7 @@ map.doubleClickZoom.disable();
 
 
 map.easeTo({
-    pitch: 45,
+    pitch: pitch_init,
     duration: 3000 // Durée de l'animation en millisecondes
 });
 
@@ -78,23 +80,36 @@ map.on('mouseleave', 'bible-dataset', () => {
 
 
 //////////////////////////////
-// let feature;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // let feature;
 
 // map.addInteraction("Click-handler", {
-//   type: "click",
-//   target: {
-//     "layerId": "bible-dataset"
-// },
-//   handler: (e) => {
-//     console.log("Test", feature);//
-//     if (feature) {
-//         map.setFeatureState(feature, { ["state"]: false });
-//       feature = null;
-//     } else {
-//       feature = e.feature;
-//       map.setFeatureState(feature, { ["state"]: true });
-//       console.log("Test2", feature, e.feature);
+//     type: "click",
+//     target: {
+//       "layerId": "bible-dataset"
+//   },
+//     handler: (e) => {
+//       console.log("Test", feature);//
+//       if (feature) {
+//           map.setFeatureState(feature, { ["state"]: false });
+//         feature = null;
+//       } else {
+//         feature = e.feature;
+//         map.setFeatureState(feature, { ["state"]: true });
+//         console.log("Test2", feature, e.feature);
+//       }
 //     }
-//   }
-// });
+//   });
 
