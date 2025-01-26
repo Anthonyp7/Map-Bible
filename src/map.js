@@ -79,37 +79,4 @@ map.on('mouseleave', 'bible-dataset', () => {
 });
 
 
-//////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // let feature;
-
-// map.addInteraction("Click-handler", {
-//     type: "click",
-//     target: {
-//       "layerId": "bible-dataset"
-//   },
-//     handler: (e) => {
-//       console.log("Test", feature);//
-//       if (feature) {
-//           map.setFeatureState(feature, { ["state"]: false });
-//         feature = null;
-//       } else {
-//         feature = e.feature;
-//         map.setFeatureState(feature, { ["state"]: true });
-//         console.log("Test2", feature, e.feature);
-//       }
-//     }
-//   });
 

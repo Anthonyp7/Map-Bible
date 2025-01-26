@@ -4,9 +4,12 @@ map.addInteraction("Click-handler", {
       "layerId": "bible-dataset"
   },
     handler: (e) => {
+      var sidebar = document.getElementById('sidebar');
         console.log("Test", e.feature);//
         const coordinates = JSON.parse(e.feature.properties.coordinates); // JSON.parse() permet de convertir les coordonées de string à object
         const description = e.feature.properties.name;
+        
+        sidebar.classList.toggle('show'); // Affichage de la sidebar
         // new mapboxgl.Popup()
         //     .setLngLat(coordinates)
         //     .setHTML(description)
