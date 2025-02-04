@@ -185,7 +185,7 @@
 
 
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -199,8 +199,10 @@ body { margin: 0; padding: 0; }
 </style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
-<link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
+<script src="https://unpkg.com/threebox-plugin/dist/threebox.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/threebox-plugin/dist/threebox.css" rel="stylesheet" />
+<!-- <script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.7/dist/threebox.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.7/dist/threebox.css" rel="stylesheet" /> -->
 <div id="map"></div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYXBlcm96ZW5pNyIsImEiOiJjbTMyNHpoNWgxMG5kMmpzNzUzdjhnY3dyIn0.sRs6nQfyHOAQ519ZWLjHwg';
@@ -234,7 +236,9 @@ body { margin: 0; padding: 0; }
                 // https://sketchfab.com/3d-models/metlife-building-32d3a4a1810a4d64abb9547bb661f7f3
                 const scale = 3.2;
                 const options = {
-                    obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/metlife-building.gltf',
+                    obj: 'male02.obj',
+                    mtl: 'male02.mtl',
+                    // obj: '/E:/Antho/Map-Bible/src/Test/metlife-building.gltf',
                     type: 'gltf',
                     scale: { x: scale, y: scale, z: 2.7 },
                     units: 'meters',
@@ -256,7 +260,7 @@ body { margin: 0; padding: 0; }
 </script>
 
 </body>
-</html> -->
+</html>
 
 
 
@@ -265,7 +269,7 @@ body { margin: 0; padding: 0; }
 
 
 
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -408,4 +412,4 @@ body { margin: 0; padding: 0; }
 
 
 
-
+ -->

@@ -1,3 +1,13 @@
+/* MAIN */
+@font-face{
+  font-family: 'Kalam';
+  src: url('../Fonts/Kalam/Kalam-Regular.ttf');
+}
+/* @font-face{
+  font-family: 'El Messiri';
+  src: url('../Fonts/El_Messiri/static/ElMessiri-Regular.ttf');
+} */
+
 body {
   margin: 0;
   padding: 0;
@@ -13,13 +23,17 @@ body {
 
 
 
+
+/* SIDE BAR */
+
 h1 {
-  font-size: 22px;
+  font-size: 25px;
   margin: 0;
   font-weight: 400;
   line-height: 20px;
   padding: 30px 2px;
   text-align: center;
+  font-family: 'Kalam';
 }
 
 .sidebar {
@@ -29,8 +43,9 @@ h1 {
   top: 0;
   right: 0;
   overflow: hidden;
-  border-left: 1px solid rgb(0 0 0 / 25%);
-  display: none
+  border-left: 1px solid rgba(206, 204, 204, 0.651);
+  display: none;
+  background-color: #161B33;
 }
 
 /* Affichage de la sidebar */
@@ -38,14 +53,25 @@ h1 {
   display: block;
 }
 
-
-
 .heading {
-  background: #fff;
+  background: #F2E5D7;
   border-bottom: 1px solid #eee;
   height: 80px;
   line-height: 60px;
   padding: 0 10px;
 }
 
+.body img {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-bottom: auto; */
+}
+
+.close-button{
+  background: #a41623;
+  padding: 30px 2px;
+  margin-top: 300px;
+}
 
