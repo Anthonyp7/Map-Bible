@@ -184,16 +184,34 @@
           .addEventListener('click', function () {
             if (!night){
               console.log("test")
-                map.setPaintProperty('Land', 'background-color', '#0b0909');
+                // map.setPaintProperty('Land', 'background-color', '#0b0909');
 
-                button.textContent = "Day";
-                night = true;
+                // button.textContent = "Day";
+                // night = true;
+              map.setFog({
+                      'range': [-1, 2],
+                      'horizon-blend': 0.3,
+                      'color': '#242B4B',
+                      'high-color': '#161B36',
+                      'space-color': '#0B1026',
+                      'star-intensity': 0.8
+                  });
+              night = true;
             }
             else{
-                map.setPaintProperty('Land', 'background-color', '#f7ddb1');
+              map.setFog({
+                        'range': [-1, 2],
+                        'horizon-blend': 0.3,
+                        'color': 'white',
+                        'high-color': '#add8e6',
+                        'space-color': '#d8f2ff',
+                        'star-intensity': 0.0
+                    });
+              night = false;
+                // map.setPaintProperty('Land', 'background-color', '#f7ddb1');
 
-                button.textContent = "Night";
-                night = false;
+                // button.textContent = "Night";
+                // night = false;
             }
               // map.setConfigProperty('basemap', 'lightPreset', "dusk");
             

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Points on a map</title>
+    <title>Nesheph</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet"/>
@@ -19,21 +19,106 @@
     <script src="sidebar.js"></script>
 
 
+    <!-- <audio controls autoplay>
+      <source src="../Sons/nature-153640.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio> -->
+
+
+    <!-- TOGGLE SWITCH -->
+    <div class='toggle-switch'>
+      <label>
+          <input type='checkbox' id="theme-toggle" onclick="dark_mode()">
+          <span class='slider'></span>
+      </label>
+    </div>
+
+
+
+
+
+    <!-- MENU -->
+    <div class="container">
+      <input type="checkbox" id="toggle" checked />
+      <label class="button" for="toggle">
+        <nav class="nav">
+          <ul>
+            <li><a href="#layer"><i id="tribes" class="tribes" onclick="display_tribes()"></i></a></li>
+            <li><a href="#0"><i class="ri-message-2-line"></i></a></li>
+            <li><a href="#0"><i class="ri-file-line"></i></a></li>
+            <li><a href="#0"><i class="ri-send-plane-2-line"></i></a></li>
+          </ul>
+        </nav>
+      </label>
+    </div>
 
       <!-- SideBar -->
     <div class="sidebar" id="sidebar">
       <div class="heading">
         <h1 id="data-name"></h1>
-        
       </div>
+
       <div class="body">
-        <svg class="close-button" id="close-button" onclick="hide_sidebar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+        <div id="origine"></div>
+        <p id="description"></p>
+        
+        
+        <button class="close-button" id="close-button" onclick="hide_sidebar()"></button>
+        <svg class="close-chevron" onclick="hide_sidebar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="#780116"/>
         </svg>
-        <!-- <img src='../Images/lac-tiberiade1.png'> -->
-        <img src="https://anthonyp7.github.io/Map-Bible/Images/lac-tiberiade1.png">
+        
+        <hr><br>
+        
+        <!-- Les images sont configurées depuis les fichiers JS -->
+        <div id="images" class="images">
+          <div id="image1"></div>
+          <div id="image2"></div>
+          <div id="image3"></div>
+        </div>
+
+        <br><hr><br>
+
+        <h2>Passages relatés :</h2>
+        <p id="passage" class="light"></p>
+        
+        <br><hr><br>
+        
+        <!-- Anecdote Card -->
+        <div class="anecdote">
+          <div>
+            <h3>Le saviez vous ?</h3>
+            <p id="anecdote">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam porro similique aliquid debitis ipsam soluta dolorum ipsa! Voluptate, suscipit iure.</p>
+          </div>
+        </div>
+        
+        
+        <br><hr><br><br><br>
 
       </div>
+    </div>
+
+
+
+
+
+    <!-- BotBar -->
+    <div class="botbar" id="botbar">
+      <div class="heading">
+        <h1 id="tribe-name"></h1>
+        <p id="tribe-nickname"></p>
+      </div>
+      
+        <!-- <svg class="close-button" id="close-button" onclick="hide_botbar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+        </svg> -->
+        <div>
+          <button class="close-button" id="close-button" onclick="hide_botbar()"></button>
+          <svg class="close-chevron" onclick="hide_botbar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="#780116"/>
+          </svg>
+        </div>
+
     </div>
 
 
