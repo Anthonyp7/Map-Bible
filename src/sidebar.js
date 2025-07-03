@@ -14,34 +14,55 @@ function show_sidebar(e){
     const img1 = e.feature.properties.image1;
     const img2 = e.feature.properties.image2;
     const description = e.feature.properties.description;
+    const bible_verse = e.feature.properties.verse;
+    const bible_ref = e.feature.properties.ref;
+    const bible_link = e.feature.properties.link;
+    const people = e.feature.properties.people;
+
+    console.log(e.feature);
+    console.log("bible_link", bible_link);
 
 
     // AFFICHAGE DES INFORMATIONS //
     document.getElementById('data-name').innerText = name;
-    
+
     var place_type = document.querySelector('.heading');
-    if(e.feature.properties.type == "water"){
-      document.getElementById('origine').innerHTML = `
-      <div class="icon-info">
-        
-        <img class="icon" src="../Images/info.svg">
-        \n
-        <p class="light" id="light"><i>David; Jean; Paul; Jacques</i></p>
+    if(e.feature.properties.type != "water"){
+      if(people){
+        document.getElementById('origine').innerHTML = `
+        <div class="tooltip-container">
+          <div class="tooltip-btn">
+            <img class="icon" src="../Images/info.svg">
+            <span class="tooltip">Personne étant né ou ayant vécu à cette localité</span>
+          </div>
+          <div class="tooltip-txt">
+            <p class="light"><i>${people}</i></p>
+          </div>
+        </div>
+        `;
+      }
 
-        <span class="icon-info-text">étant né ou ayant vécu à cette localité</span>
-      </div>`;
-
-      place_type.style.backgroundImage = 'url("../Images/sea-banner2.png")';
-
+      place_type.style.backgroundImage = 'url("../Images/tyr1.png")';
+      
     }
     else{
-      console.log("erreur ?", e.feature.properties.type);
-      place_type.style.backgroundImage = 'url("../Images/tyr1.png")';
+      place_type.style.backgroundImage = 'url("../Images/sea-banner2.png")';
     }
+
     document.getElementById('description').innerText = description;
     document.getElementById('image1').innerHTML = `<img src='${img1}'>`;
     document.getElementById('image2').innerHTML = `<img src='${img2}'>`;
     document.getElementById('passage').innerText = "Nb 34:11; Mt 4:13; Jn 6:16-21\nLa Mer de Kinnereth, ou mer de Galilée est un lac se trouvant au nord du pays d'Israël et est traversée par le Jourdain. Plusieurs villes bordent ce lac, c'est le cas notamment de Capernaüm où Jésus à effectué un grand nombre de miracle.La Mer de Kinnereth, ou mer de Galilée est un lac se trouvant au nord du pays d'Israël et est traversée par le Jourdain. Plusieurs villes bordent ce lac, c'est le cas notamment de Capernaüm où Jésus à effectué un grand nombre de miracle.";
+    document.getElementById('verse').innerText = bible_verse;
+    document.getElementById('ref').innerText = bible_ref;
+
+    // LIEN VERSET
+    const href_link = document.getElementById('link');
+    href_link.href = bible_link;
+
+
+    console.log("TEST", href_link.href);//
+
 
      
     // NAVIGATION //
