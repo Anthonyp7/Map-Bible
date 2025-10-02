@@ -18,6 +18,7 @@ function show_sidebar(e){
     const bible_ref = e.feature.properties.ref;
     const bible_link = e.feature.properties.link;
     const people = e.feature.properties.people;
+    const anecdote = e.feature.properties.anecdote;
 
     console.log(e.feature);
     console.log("bible_link", bible_link);
@@ -40,21 +41,26 @@ function show_sidebar(e){
           </div>
         </div>
         `;
+        console.log("OUI");
       }
-
-      place_type.style.backgroundImage = 'url("../Images/tyr1.png")';
+      else{
+        document.getElementById('origine').innerHTML = `<br><br>`;
+      }
+      place_type.style.backgroundImage = 'url("../Images/city.png")';
       
     }
     else{
+      document.getElementById('origine').innerHTML = `<br><br>`;
       place_type.style.backgroundImage = 'url("../Images/sea-banner2.png")';
     }
 
     document.getElementById('description').innerText = description;
     document.getElementById('image1').innerHTML = `<img src='${img1}'>`;
     document.getElementById('image2').innerHTML = `<img src='${img2}'>`;
-    document.getElementById('passage').innerText = "Nb 34:11; Mt 4:13; Jn 6:16-21\nLa Mer de Kinnereth, ou mer de Galilée est un lac se trouvant au nord du pays d'Israël et est traversée par le Jourdain. Plusieurs villes bordent ce lac, c'est le cas notamment de Capernaüm où Jésus à effectué un grand nombre de miracle.La Mer de Kinnereth, ou mer de Galilée est un lac se trouvant au nord du pays d'Israël et est traversée par le Jourdain. Plusieurs villes bordent ce lac, c'est le cas notamment de Capernaüm où Jésus à effectué un grand nombre de miracle.";
+    document.getElementById('passage').innerText = "Nb 34:11; Mt 4:13; Jn 6:16-21\n";
     document.getElementById('verse').innerText = bible_verse;
     document.getElementById('ref').innerText = bible_ref;
+    document.getElementById('anecdote').innerText = anecdote;
 
     // LIEN VERSET
     const href_link = document.getElementById('link');
@@ -62,6 +68,18 @@ function show_sidebar(e){
 
 
     console.log("TEST", href_link.href);//
+
+    
+    // MODIFICATIONS TEXTE
+    //// RECUPERATION DES COULEURS CSS
+    const root = document.documentElement;
+    const fireColor = getComputedStyle(root).getPropertyValue('--fire').trim();
+
+    //// CHANGEMENT DE COULEUR
+    map.setPaintProperty("places", "text-color", ['match', ['get', 'name'], e.feature.properties.name, fireColor, "#00132a"]);
+    //// PASSAGE EN GRAS
+    map.setLayoutProperty("places", "text-font", ['match', ['get', 'name'], e.feature.properties.name, ["Kalam Bold"], ["Kalam Regular"]]);
+
 
 
      
@@ -77,6 +95,17 @@ function show_sidebar(e){
 
 function hide_sidebar(){
   sidebar.classList.remove('show');
+
+  // MODIFICATIONS TEXTE
+
+  //// RECUPERATION DES COULEURS CSS
+  const root = document.documentElement;
+  const fireColor = getComputedStyle(root).getPropertyValue('--fire').trim();
+
+  //// CHANGEMENT DE COULEUR
+  map.setPaintProperty("places", "text-color", "#00132a");
+  //// PASSAGE EN GRAS
+  map.setLayoutProperty("places", "text-font", ["Kalam Regular"]);
 }
 
 
@@ -159,10 +188,12 @@ map.addInteraction("Click-handler3", {
 map.addInteraction("Click-handler2", {
   type: "click",
   target: {
-    "layerId": "tribes"
+    layerId: "tribes-icon"
 },
   handler: (e) => {
+    console.log("botbar", e.feature);
     show_botbar(e)
+    map.setPaintProperty("tribes", "fill-opacity", ['match', ['get', 'name'], e.feature.properties.name, 1, 0]);
   }
 });
 

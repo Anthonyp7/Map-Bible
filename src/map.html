@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <title>Nesheph</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet"/>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet"/>
     <link href="map.css" rel="stylesheet"/>
     
     
@@ -60,7 +60,21 @@
 
       <div class="body">
         <div id="origine"></div>
-        <p id="description"></p>
+
+        <!-- <br><br> -->
+
+        <div class="grid-info">
+          <div class="box a"><h5>Appartenance : </h5><p>A</p></div>
+          <div class="box b"><h5>Appartenance : </h5><p>Juda</p></div>
+          <div class="box c"><h5>État actuel : </h5><p>Présent</p></div>
+          <div class="box d"><h5>1ère mention : </h5><p>1 Rois 3:24</p></div>
+          <!-- <div class="box e">E</div> -->
+          <!-- <div class="box f">F</div> -->
+        </div>
+
+        <br><br><hr>
+
+        <p id="description" class="regular"></p>
         
         
         <button class="close-button" id="close-button" onclick="hide_sidebar()"></button>
@@ -77,29 +91,29 @@
           <div id="image3"></div>
         </div>
 
-        <br><hr><br>
+        <br><br><hr><br>
 
         <h2>Passages relatés :</h2>
         <p id="passage" class="light"></p>
         
-        <br><hr><br>
+        <br><hr><br><br>
         
         <!-- Anecdote Card -->
         <div class="anecdote">
           <div>
             <h3>Le saviez vous ?</h3>
-            <p id="anecdote">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam porro similique aliquid debitis ipsam soluta dolorum ipsa! Voluptate, suscipit iure.</p>
+            <p id="anecdote" class="regular"></p>
           </div>
         </div>
         
         
-        <br><hr><br><br>
+        <br><br><hr><br><br><br>
         
         <div class="verse">
           <img class="verse-img" src="https://images.unsplash.com/photo-1656618020911-1c7a937175fd?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTc1MzQyNTE&ixlib=rb-1.2.1&q=80" alt="">
           <div class="card-content">
             <h2 id="ref"></h2>
-            <p id="verse"></p>
+            <p id="verse" class="regular"></p>
             <a id="link" target="_blank">
               <img class="link-img" src="../Images/bible.png"/>
             </a>
@@ -107,7 +121,7 @@
         </div>
 
         
-        <br><hr><br><br><br>
+        <br><br><hr><br><br><br>
 
       </div>
     </div>
@@ -123,9 +137,7 @@
         <p id="tribe-nickname"></p>
       </div>
       
-        <!-- <svg class="close-button" id="close-button" onclick="hide_botbar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
-        </svg> -->
+      
         <div>
           <button class="close-button" id="close-button" onclick="hide_botbar()"></button>
           <svg class="close-chevron" onclick="hide_botbar()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

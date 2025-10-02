@@ -37,7 +37,6 @@ map.easeTo({
 
 
 
-
 // Hover sur dataset
 let feature;
 
@@ -51,7 +50,7 @@ map.addInteraction("move-handler", {
     if (e.feature) {
         
         if (feature) {
-        map.setFeatureState(feature, { ["state"]: false });
+            map.setFeatureState(feature, { ["state"]: false });
         }
 
         feature = e.feature;
@@ -63,7 +62,7 @@ map.addInteraction("move-handler", {
 map.addInteraction("leave-handler", {
     type: "mouseleave",
     target: {
-    "layerId": "bible-dataset"
+    layerId: "bible-dataset"
 },
     handler: (e) => {
         
@@ -77,12 +76,11 @@ map.addInteraction("leave-handler", {
 
 
 
-
 // Changement du curseur 
-map.on('mouseenter', ['bible-dataset', 'tribes'], () => {
+map.on('mouseenter', ['bible-dataset', 'tribes-icon'], () => {
     map.getCanvas().style.cursor = 'pointer';
 });
-map.on('mouseleave', ['bible-dataset', 'tribes'], () => {
+map.on('mouseleave', ['bible-dataset', 'tribes-icon'], () => {
     map.getCanvas().style.cursor = '';
 });
 
@@ -121,6 +119,38 @@ map.on('mouseleave', ['bible-dataset', 'tribes'], () => {
 //     }
 // });
 
+// map.setLayerZoomRange('county-population', 4, 24); // minzoom=4, maxzoom=24
+
+
+
+map.addInteraction("move-handler-tribe", {
+    type: "mousemove",
+    target: {
+    "layerId": "tribes-icon"
+},
+    handler: (e) => {
+    if (e.feature) {
+        
+        if (feature) {
+            map.setPaintProperty("tribes", "fill-opacity", ['match', ['get', 'name'], feature.properties.name, 0, 1]);
+        }
+
+        feature = e.feature;
+        map.setPaintProperty("tribes", "fill-opacity", ['match', ['get', 'name'], feature.properties.name, 1, 0]);
+        
+    }}
+});
+
+
+map.on('mouseleave', 'tribes-icon', () => {
+    console.log('Souris sortie de my-layer');
+    if (feature) {
+        console.log("on arrete tout");
+        map.setPaintProperty("tribes", "fill-opacity", 0);
+        feature = null;
+    }
+});
+
 
 
 
@@ -134,13 +164,14 @@ function display_tribes(){
     
     if(layer.classList.contains("show")){
         console.log("oui");
-        map.setLayoutProperty('tribes', 'visibility', 'none');
+        map.setPaintProperty('tribes', 'fill-opacity', 0);
         layer.classList.remove('show');
         tribes.style.content = 'url("../Images/layer-light.png")';
     }
     else{
         console.log("non");
-        map.setLayoutProperty('tribes', 'visibility', 'visible');
+        map.setPaintProperty('tribes', 'fill-opacity', 1);
+        // map.setLayoutProperty('tribes', 'visibility', 'visible');
         layer.classList.add("show");
         tribes.style.content = 'url("../Images/layer-checked.png")';
     }
