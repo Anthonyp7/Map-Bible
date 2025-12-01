@@ -20,6 +20,10 @@
   --fire: #780116;
 }
 
+.test{
+  background-color: #00132A;
+}
+
 
 /* MAIN */
 
@@ -100,7 +104,7 @@ hr{
   top: 0;
   right: 0;
   overflow: hidden;
-  border-left: 1px solid rgba(206, 204, 204, 0.651);
+  border-left: 1px solid rgba(236, 236, 236, 0.651);
   display: none;
   /* background-color: #161B33; */
   /* background-color: var(--sea); */
@@ -290,8 +294,9 @@ hr{
   }
   
   p {
-    inset: auto auto 35px 30px;
+    inset: 10% 10%;
     padding: 10px;
+    top: 15%;
   }
   
   a {
@@ -623,6 +628,7 @@ input:checked ~ label {
 .icon{
   cursor: pointer;
   padding: 0 0 1px 4px;
+  width: 30px;
 }
 
 .tooltip {

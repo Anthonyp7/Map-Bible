@@ -7,16 +7,20 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet"/>
     <link href="map.css" rel="stylesheet"/>
+    <link href="loadpage.css" rel="stylesheet"/>
     
     
     
   </head>
   <body>
-    <div id="map"></div>
+    <!-- <div id="map"></div> -->
+    <div id="map" style="visibility:hidden;opacity: 0;"></div>
+    <!-- <iframe src="Test/loadpage3.html" width="100%" height="100%"></iframe> -->
 
     <script src="map.js"></script>
     <script src="light.js"></script>
     <script src="sidebar.js"></script>
+
 
 
     <!-- <audio controls autoplay>
@@ -26,19 +30,19 @@
 
 
     <!-- TOGGLE SWITCH -->
-    <div class='toggle-switch'>
+    <!-- <div class='toggle-switch' id='toggle-switch' style="visibility:hidden;opacity: 0;">
       <label>
           <input type='checkbox' id="theme-toggle" onclick="dark_mode()">
           <span class='slider'></span>
       </label>
-    </div>
+    </div> -->
 
 
 
 
 
     <!-- MENU -->
-    <div class="container">
+    <!-- <div class="container" id="menu" style="visibility:hidden;opacity: 0;">
       <input type="checkbox" id="toggle" checked />
       <label class="button" for="toggle">
         <nav class="nav">
@@ -50,7 +54,7 @@
           </ul>
         </nav>
       </label>
-    </div>
+    </div> -->
 
       <!-- SideBar -->
     <div class="sidebar" id="sidebar">
@@ -64,10 +68,11 @@
         <!-- <br><br> -->
 
         <div class="grid-info">
-          <div class="box a"><h5>Appartenance : </h5><p>A</p></div>
-          <div class="box b"><h5>Appartenance : </h5><p>Juda</p></div>
-          <div class="box c"><h5>État actuel : </h5><p>Présent</p></div>
-          <div class="box d"><h5>1ère mention : </h5><p>1 Rois 3:24</p></div>
+          <div class="box a" id="meaning"><h5>Traduction/Signification : </h5><p>A</p></div>
+          <div class="box b" id="affiliation"><h5>Appartenance : </h5><p>Juda</p></div> 
+          <!-- Anciennes appartenances (avant conquête par exemple) -->
+          <div class="box c" id="state"><h5>État actuel : </h5><p>Présent</p></div>
+          <div class="box d" id="first-mention"><h5>1ère mention : </h5><p>1 Rois 3:24</p></div>
           <!-- <div class="box e">E</div> -->
           <!-- <div class="box f">F</div> -->
         </div>
@@ -110,7 +115,7 @@
         <br><br><hr><br><br><br>
         
         <div class="verse">
-          <img class="verse-img" src="https://images.unsplash.com/photo-1656618020911-1c7a937175fd?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTc1MzQyNTE&ixlib=rb-1.2.1&q=80" alt="">
+          <img class="verse-img" src="../Images/night-sky 2.jpg" alt="">
           <div class="card-content">
             <h2 id="ref"></h2>
             <p id="verse" class="regular"></p>
@@ -148,6 +153,148 @@
     </div>
 
 
+
+
+
+    <div id="loader">
+      <div class="scene" id="scene">
+          <div class="forest">
+              <div class="tree tree1">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              </div>
+
+              <div class="tree tree2">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+
+              <div class="tree tree3">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+
+              <div class="tree tree4">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+
+              <div class="tree tree5">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+
+              <div class="tree tree6">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+
+              <div class="tree tree7">
+              <div class="branch branch-top"></div>
+              <div class="branch branch-middle"></div>
+              <div class="branch branch-bottom"></div>
+              </div>
+          </div>
+          
+          <div class="tent">
+              <div class="roof"></div>
+              <div class="roof-border-left">
+                  <div class="roof-border roof-border1"></div>
+                  <div class="roof-border roof-border2"></div>
+                  <div class="roof-border roof-border3"></div>
+              </div>
+              <div class="entrance">
+                  <div class="door left-door">
+                  <div class="left-door-inner"></div>
+                  </div>
+                  <div class="door right-door">
+                  <div class="right-door-inner"></div>
+                  </div>
+              </div>
+              </div>
+
+          <div class="floor">
+              <div class="ground ground1"></div>
+              <div class="ground ground2"></div>
+              </div>
+          
+          <div class="fireplace">
+              <div class="support"></div>
+              <div class="support"></div>
+              <div class="bar"></div>
+              <div class="hanger"></div>
+              <div class="smoke"></div>
+              <div class="pan"></div>
+              <div class="fire">
+              <div class="line line1">
+                  <div class="particle particle1"></div>
+                  <div class="particle particle2"></div>
+                  <div class="particle particle3"></div>
+                  <div class="particle particle4"></div>
+              </div>
+              <div class="line line2">
+                  <div class="particle particle1"></div>
+                  <div class="particle particle2"></div>
+                  <div class="particle particle3"></div>
+                  <div class="particle particle4"></div>
+              </div>
+              <div class="line line3">
+                  <div class="particle particle1"></div>
+                  <div class="particle particle2"></div>
+                  <div class="particle particle3"></div>
+                  <div class="particle particle4"></div>
+              </div>
+              </div>
+          </div>
+          
+          <div class="time-wrapper">
+              <div class="time">
+              <div class="day"></div>
+              <div class="night">
+                  <div class="moon"></div>
+                  <div class="star star1 star-big"></div>
+                  <div class="star star2 star-big"></div>
+                  <div class="star star3 star-big"></div>
+                  <div class="star star4"></div>
+                  <div class="star star5"></div>
+                  <div class="star star6"></div>
+                  <div class="star star7"></div>
+              </div>
+              </div>
+          </div>
+      </div>
+      <div class="loadpage-verse">
+          <p class="verse-content"><i>Du <u>lever du soleil</u> jusqu'à son coucher, que le nom de <span class="wave-underline">l'Eternel</span> soit célébré!</i></p>
+          <br><p>-</p><br>
+          <h2><a href="https://www.bible.com/bible/152/PSA.113.3" target="_blank">Psaume 113:3</a></h2>
+      </div>
+    </div>
+
+      <script>
+        const loader = document.getElementById("loader");
+        const map_content = document.getElementById("map");
+        const menu = document.getElementById("menu");
+        const toggle_switch = document.getElementById("toggle-switch");
+
+        setTimeout(() => {
+          console.log("test", loader)
+          loader.remove();
+          map_content.style.visibility = "visible";
+          map_content.style.transition = "opacity 0.5s, visibility 0.5s";
+          map_content.style.opacity = "1";
+          // menu.style.visibility = "visible";
+          // menu.style.transition = "opacity 0.5s, visibility 0.5s";
+          // menu.style.opacity = "1";
+          // toggle_switch.style.visibility = "visible";
+          // toggle_switch.style.transition = "opacity 0.5s, visibility 0.5s";
+          // toggle_switch.style.opacity = "1";
+        }, 7000)
+      </script>
 
   </body>
 </html>

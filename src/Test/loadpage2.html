@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Points on a map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #28292c;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      p{
+        text-align: center;
+      }
+
+
+      /* HTML: <div class="loader"></div> */
+        .loader {
+        width: 200px;
+        height: 100px;
+        border-radius: 100px 100px 0 0;
+        position: relative;
+        overflow: hidden;
+        left: 43%;
+        top: 300px;
+        }
+
+        .loader:before {
+        content: "";
+        position: absolute;
+        inset: 0 0 -100%;
+        background: radial-gradient(farthest-side,#FF6C38 80%,#0000) left 70% top    20%/15px 15px,
+            radial-gradient(farthest-side,#020308 92%,#0000) left 65% bottom 19%/12px 12px,
+            radial-gradient(farthest-side,#ecfefe 92%,#0000) left 70% bottom 20%/15px 15px,
+            linear-gradient(#9eddfe 50%,#020308 0);
+        background-repeat: no-repeat;
+        animation: l5 3.5s infinite;
+        }
+
+        @keyframes l5 {
+        0%,20% {
+            transform: rotate(0)
+        }
+
+        40%,60% {
+            transform: rotate(.5turn)
+        }
+
+        80%,100% {
+            transform: rotate(1turn)
+        }
+        }
+
+
+    </style>
+  </head>
+  <body>
+
+
+    <div class="loader"></div>
+    <p>Test verset</p>
+    
+  </body>
+</html>

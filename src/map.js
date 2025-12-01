@@ -29,10 +29,27 @@ let scale = new mapboxgl.ScaleControl()
 map.addControl(scale)
 
 
-map.easeTo({
-    pitch: pitch_init,
-    duration: 3000 // Durée de l'animation en millisecondes
-});
+// map.easeTo({
+//     pitch: pitch_init,
+//     duration: 3000 // Durée de l'animation en millisecondes
+// });
+
+
+
+// #TEST
+window.addEventListener("load", () => {
+    console.log("chargééé");
+})
+
+setTimeout(() => {
+    console.log("Your wish has been logged!");
+//   map.setLayoutProperty("Land - Night copy", "visibility", "visible");
+
+    map.easeTo({
+        pitch: pitch_init,
+        duration: 3000 // Durée de l'animation en millisecondes
+    });
+}, 7150); // 60000 milliseconds = 1 minute
 
 
 
@@ -59,20 +76,26 @@ map.addInteraction("move-handler", {
 });
 
 
-map.addInteraction("leave-handler", {
-    type: "mouseleave",
-    target: {
-    layerId: "bible-dataset"
-},
-    handler: (e) => {
+// map.addInteraction("leave-handler", {
+//     type: "mouseleave",
+//     target: {
+//     layerId: "bible-dataset"
+// },
+//     handler: (e) => {
         
+//     if (feature) {
+//         map.setFeatureState(feature, { ["state"]: false });
+//         feature = null;
+//     }
+//     }
+// });
+
+map.on('mouseleave', 'bible-dataset', () => {
     if (feature) {
         map.setFeatureState(feature, { ["state"]: false });
         feature = null;
     }
-    }
 });
-
 
 
 
@@ -84,40 +107,6 @@ map.on('mouseleave', ['bible-dataset', 'tribes-icon'], () => {
     map.getCanvas().style.cursor = '';
 });
 
-
-
-// map.addInteraction("move-handler2", {
-//     type: "mousemove",
-//     target: {
-//     "layerId": "places"
-// },
-//     handler: (e) => {
-//     // console.log("test")
-//     if (e.feature) {
-        
-//         if (feature) {
-//         map.setFeatureState(feature, { ["state"]: false });
-//         }
-
-//         feature = e.feature;
-//         map.setFeatureState(feature, { ["state"]: true });
-//     }}
-// });
-
-
-// map.addInteraction("leave-handler2", {
-//     type: "mouseleave",
-//     target: {
-//     "layerId": "places"
-// },
-//     handler: (e) => {
-        
-//     if (feature) {
-//         map.setFeatureState(feature, { ["state"]: false });
-//         feature = null;
-//     }
-//     }
-// });
 
 // map.setLayerZoomRange('county-population', 4, 24); // minzoom=4, maxzoom=24
 

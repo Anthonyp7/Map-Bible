@@ -19,6 +19,10 @@ function show_sidebar(e){
     const bible_link = e.feature.properties.link;
     const people = e.feature.properties.people;
     const anecdote = e.feature.properties.anecdote;
+    const meaning = e.feature.properties.translate_meaning;
+    const affiliation = e.feature.properties.affiliation;
+    const state = e.feature.properties.state;
+    const first_mention = e.feature.properties.first_mention;
 
     console.log(e.feature);
     console.log("bible_link", bible_link);
@@ -60,7 +64,11 @@ function show_sidebar(e){
     document.getElementById('passage').innerText = "Nb 34:11; Mt 4:13; Jn 6:16-21\n";
     document.getElementById('verse').innerText = bible_verse;
     document.getElementById('ref').innerText = bible_ref;
-    document.getElementById('anecdote').innerText = anecdote;
+    document.getElementById('anecdote').innerHTML = anecdote; // HTML POUR POUVOIR AJOUTER DES LIENS HYPERTEXTE
+    document.getElementById('meaning').innerHTML = `<h5>Traduction/Signification : </h5><p>${meaning}</p>`;
+    document.getElementById('affiliation').innerHTML = `<h5>Appartenance : </h5><p>${affiliation}</p>`;
+    document.getElementById('state').innerHTML = `<h5>État actuel : </h5><p>${state}</p>`;
+    document.getElementById('first-mention').innerHTML = `<h5>1ère mention : </h5><p>${first_mention}</p>`;
 
     // LIEN VERSET
     const href_link = document.getElementById('link');
@@ -68,6 +76,7 @@ function show_sidebar(e){
 
 
     console.log("TEST", href_link.href);//
+    console.log(e.feature)
 
     
     // MODIFICATIONS TEXTE
